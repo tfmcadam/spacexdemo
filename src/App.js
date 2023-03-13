@@ -1,23 +1,27 @@
-import logo from './logo.svg';
 import './App.css';
+import {Link, Navigate, Route, Routes} from "react-router-dom";
+import {Launches} from './views/Launches'
+import {OneLaunch} from './views/OneLaunch'
+import {NotFound} from './views/NotFound'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <div style={{}}>
+      <header>
+        <nav>
+          <Link to="/launches">
+            Launches
+          </Link>
+        </nav>
       </header>
+      <Routes>
+        {/* replace creates a default webpage */}
+        <Route path="/" element={<Navigate to="/launches" replace/>}/> 
+        <Route path="/launches" element={<Launches/>}/>
+        <Route path="/oneLaunch/:id" element={<OneLaunch/>}/>
+        <Route path="*" element={<NotFound/>}/>
+      </Routes>
+    
     </div>
   );
 }
